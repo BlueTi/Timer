@@ -1,12 +1,11 @@
 import React from 'react';
 import { TextInput, View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import ActionCreators from '../actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SetView = () => {
     const dispatch = useDispatch();
     function press_button(){
-        dispatch(ActionCreators.setRestFlag(true));
         dispatch(ActionCreators.setWorkFlag(true));
         console.log('Press');
     }

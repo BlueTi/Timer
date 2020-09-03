@@ -1,9 +1,7 @@
-import * as flagAction from './flagAction';
-import * as minuteAction from './minuteAction';
+import * as optionAction from './optionAction'
 
 const ActionCreators = Object.assign({},
-  flagAction,
-  minuteAction,
+  optionAction,
 );
 
 export default ActionCreators;
