@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, Button, } from 'react-native';
-
-import { createStore } from 'redux';
-import { Provider, useSelector } from 'react-redux';
-import reducers from './reducers';
-
+import React from 'react';
 import MainView from './components/MainView';
+import {store} from './store'
+import {Provider} from 'react-redux'
+
 
 const App = () => {
-  let store = createStore(reducers);
-
   return <Provider store={store}>
       <MainView/>
   </Provider>

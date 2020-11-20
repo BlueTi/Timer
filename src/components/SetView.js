@@ -1,19 +1,41 @@
-import React from 'react';
-import { TextInput, View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { TextInput, View, StyleSheet, TouchableOpacity, Text, Alert } from 'react-native';
 import ActionCreators from '../actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const SetView = () => {
     const dispatch = useDispatch();
+    const [work_time,set_work_time] = useState();
+    const [rest_time,set_rest_time] = useState();
+
+
     function press_button(){
-        dispatch(ActionCreators.setWorkFlag(true));
-        console.log('Press');
+        if(work_time != undefined && rest_time != undefined && !isNaN(Number(work_time)) && !isNaN(Number(rest_time))){
+            
+        }
+        else{
+            Alert.alert(
+                'Check value',
+                'only input number or please input number',
+                [
+                  { text: 'OK'}
+                ]
+              );
+        }
+
+        console.log(work_time+" "+rest_time);
     }
 
     return <View style={styles.setContainer}>
-        <View style={styles.viewLine}><Text style={styles.text}>Work</Text><TextInput style={styles.textInput}/></View>
-        <View style={styles.viewLine}><Text style={styles.text}>Rest</Text><TextInput style={styles.textInput}/></View>
-        <TouchableOpacity style={styles.TouchableOpacity} onPress={()=>{press_button();}}><Text>button</Text></TouchableOpacity>
+        <View style={styles.viewLine}>
+            <Text style={styles.text}>Work</Text>
+            <TextInput style={styles.textInput} onChangeText={text=>{set_work_time(text)}} keyboardType="number-pad"/>
+        </View>
+        <View style={styles.viewLine}>
+            <Text style={styles.text}>Rest</Text>
+            <TextInput style={styles.textInput} onChangeText={text=>{set_rest_time(text)}} keyboardType="number-pad"/>
+        </View>
+        <TouchableOpacity style={styles.TouchableOpacity} onPress={press_button}><Text>button</Text></TouchableOpacity>
     </View>
 }
 
@@ -33,8 +55,10 @@ const styles = StyleSheet.create({
         flex: 1,
         borderColor: "red",
         borderWidth: 3,
-        marginLeft:-60,
-        marginRight:30
+        marginLeft:-50,
+        marginRight:30,
+        height:38,
+        textAlign:"center",
     },
     text:{
         flex: 1,
