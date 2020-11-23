@@ -1,29 +1,21 @@
 import types from './types';
 
-export function setWorkFlag(option){
+
+export function setStartOptions(options) {
     return {
-        type: types.work_flag,
-        payload: option
+        type: types.start,
+        payload: options
     }
 }
 
-export function setRestFlag(option){
+export function endWork() {
     return {
-        type: types.rest_flag,
-        payload: option
+        type: types.end_work,
     }
 }
 
-export function setWorkMinute(minute){
+export function stop() {
     return {
-        type: types.work_minute,
-        payload: minute
-    }
-}
-
-export function setRestMinute(minute){
-    return {
-        type: types.rest_minute,
-        payload: minute
+        type: types.stop,
     }
 }

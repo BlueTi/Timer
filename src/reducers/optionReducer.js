@@ -8,26 +8,29 @@ const options = {
 }
 export default (state = options, action) => {
     switch (action.type) {
-        case types.work_flag:
+        case types.start:
             return {
-                ... options,
-                work_flag: action.payload
+                work_flag:true,
+                rest_flag:true,
+                work_minute:action.payload.work_minute,
+                rest_minute:action.payload.rest_minute,
             }
-        case types.rest_flag:
+        case types.end_rest:
+            return{
+                ... options,
+            }
+
+        case types.end_work:
             return {
-                ... options,
-                rest_flag: action.payload
+                ... state,
+                work_flag:false,
             }
-        case types.work_minute:
-            return {
+
+        case types.stop:
+            return{
                 ... options,
-                work_minute: action.payload
             }
-        case types.rest_minute:
-            return {
-                ... options,
-                rest_minute: action.payload
-            }
+
         default:
             return state;
     }

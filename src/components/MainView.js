@@ -1,20 +1,18 @@
 import React, { useEffect } from 'react';
 import SetView from './SetView';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useSelector, } from 'react-redux';
 import TimerView from './TimerView';
+import {styles} from '../styles';
 
 const MainView = () => {
-    const {work_flag,rest_flag,work_minute,rest_minute} = useSelector(state => state.options);
+    const { work_flag, rest_flag, } = useSelector(state => state.options);
 
-    useEffect(()=>{
-        console.log(work_flag+" : "+rest_flag+"="+work_minute+" : "+rest_minute);
-    })
-
-    return <View>
-        {work_flag?<View><TimerView /></View>:rest_flag?<View><Text>hi2</Text></View>:<SetView/>}
+    return <View style={styles.main}>
+        {work_flag ? <View><TimerView /></View> : rest_flag ? <TimerView /> : <SetView />}
     </View>
 }
+
 
 
 export default MainView;
