@@ -26,6 +26,16 @@ export const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
     },
+    inputSection:{
+        flex:1,
+        flexDirection: "row",
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+    },
+    textinputIcon:{
+        padding:10
+    },
     textInput: {
         flex: 1,
         borderColor: "white",

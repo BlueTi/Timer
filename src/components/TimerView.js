@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Animated, StyleSheet, Text, TouchableOpacity, View, Easing } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import PushNotification from 'react-native-push-notification';
 import { useSelector, useDispatch } from 'react-redux';
 import ActionCreators from '../actions';
 import {styles,colors} from '../styles';
@@ -66,6 +67,7 @@ const TimerAnimation = () => {
             backgroundColor="#3d5875"
             lineCap="round"
             arcSweepAngle={work_flag ? 300 : 300}
+            easing = {Easing.linear}
             onAnimationComplete={_completeHandle}
         >
             {(fill) => (<TimeView />)}
