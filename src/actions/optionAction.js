@@ -13,6 +13,11 @@ export function endWork() {
         type: types.end_work,
     }
 }
+export function endRest(){
+    return {
+        type:types.end_rest
+    }
+}
 
 export function stop() {
     return {

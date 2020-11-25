@@ -1,10 +1,10 @@
 import React from 'react';
-import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import AwesomIcon from 'react-native-vector-icons/FontAwesome5'
 import {styles} from '../styles';
 
-export const StartIcon = () => {
-    return <MaterialIcon name="exit-run" size={30} color="white" />
+export const StopIcon = () => {
+    return <AwesomIcon name="stop-circle" size={30} color="white" />
 }
 
 export const ExitIcon = () => {
@@ -21,5 +21,9 @@ export const RestIcon = () => {
 }
 
 export const ClockIcon = () => {
-    return <AntIcon name="clockcircleo" size={50} style={styles.icon}/>
+    return <AntIcon name="clockcircleo" size={50} style={styles.icon} color="gray"/>
+}
+
+export const StartIcon = () => {
+    return <AntIcon name="play" size={30} color="white" />
 }

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Animated, StyleSheet, Text, TouchableOpacity, View, Easing } from 'react-native';
+import { Animated, Text, TouchableOpacity, View, Easing, Platform } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import PushNotification from 'react-native-push-notification';
 import { useSelector, useDispatch } from 'react-redux';
 import ActionCreators from '../actions';
+import Notification from '../Notification';
 import {styles,colors} from '../styles';
-import {StartIcon} from './Icons';
+import {StopIcon} from './Icons';
 
 const TimerView = () => {
     const dispatch = useDispatch();
@@ -14,14 +14,14 @@ const TimerView = () => {
     }
     return <View style={styles.container}>
         <TimerAnimation />
-        <TouchableOpacity style={styles.TouchableOpacity} onPress={() => { press_button(); }}><StartIcon/></TouchableOpacity>
+        <TouchableOpacity style={styles.TouchableOpacity} onPress={() => { press_button(); }}><StopIcon/></TouchableOpacity>
     </View>
 }
 
 const TimerAnimation = () => {
     const dispatch = useDispatch();
     const { work_minute, rest_minute } = useSelector(state => state.options);
-    const { work_flag } = useSelector(state => state.options);
+    const { work_flag, rest_flag, stop_flag } = useSelector(state => state.options);
     const time = new Animated.Value(0);
     useEffect(() => {
         Animated.timing(time, {
@@ -48,11 +48,13 @@ const TimerAnimation = () => {
     }
 
     const _completeHandle = () => {
-        if (work_flag) {
+        if (work_flag||stop_flag) {
+            Notification({title:"start",message:"\u2615"});
             dispatch(ActionCreators.endWork());
         }
-        else {
-            dispatch(ActionCreators.stop());
+        else if(rest_flag||stop_flag) {
+            Notification({title:"rest",message:"\u23F9"});
+            dispatch(ActionCreators.endRest());
         }
     }
 

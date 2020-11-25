@@ -3,6 +3,7 @@ import types from '../actions/types';
 const options = {
     work_flag:false,
     rest_flag:false,
+    stop_flag:true,
     work_minute:0,
     rest_minute:0,
 }
@@ -12,6 +13,7 @@ export default (state = options, action) => {
             return {
                 work_flag:true,
                 rest_flag:true,
+                stop_flag:false,
                 work_minute:action.payload.work_minute,
                 rest_minute:action.payload.rest_minute,
             }
@@ -26,10 +28,13 @@ export default (state = options, action) => {
                 work_flag:false,
             }
 
-        case types.stop:
-            return{
-                ... options,
+        case types.end_rest:
+            return {
+                ... state,
+                rest_flag:false,
             }
+        case types.stop:
+            return options;
 
         default:
             return state;
