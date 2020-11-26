@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
     TouchableOpacity: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: 120,
+        width: "50%",
         height: 50,
         alignItems: "center",
         marginTop: 30,

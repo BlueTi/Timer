@@ -11,6 +11,7 @@ const TimerView = () => {
     const dispatch = useDispatch();
     function press_button() {
         dispatch(ActionCreators.stop());
+        Notification.cancel();
     }
     return <View style={styles.container}>
         <TimerAnimation />
@@ -20,17 +21,8 @@ const TimerView = () => {
 
 const TimerAnimation = () => {
     const dispatch = useDispatch();
-    const { work_minute, rest_minute } = useSelector(state => state.options);
-    const { work_flag, rest_flag, stop_flag } = useSelector(state => state.options);
-    const time = new Animated.Value(0);
-    useEffect(() => {
-        Animated.timing(time, {
-            toValue: 1,
-            duration: 1000,
-            useNativeDriver: true,
-        }).start();
-    }, [])
-
+    const { work_minute, rest_minute, work_flag, rest_flag} = useSelector(state => state.options);
+    
     var start = Date.now();
     const TimeView = () => {
         const [ti, setTi] = useState((work_flag ? work_minute : rest_minute));
@@ -48,12 +40,11 @@ const TimerAnimation = () => {
     }
 
     const _completeHandle = () => {
-        if (work_flag||stop_flag) {
-            Notification({title:"start",message:"\u2615"});
+        if (work_flag) {
+            Notification.register({message:"🛑",time:rest_minute});
             dispatch(ActionCreators.endWork());
         }
-        else if(rest_flag||stop_flag) {
-            Notification({title:"rest",message:"\u23F9"});
+        else if(rest_flag) {
             dispatch(ActionCreators.endRest());
         }
     }

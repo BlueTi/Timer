@@ -1,4 +1,4 @@
-package com.timer;
+package com.deployproject;
 
 import com.facebook.react.ReactActivity;
 

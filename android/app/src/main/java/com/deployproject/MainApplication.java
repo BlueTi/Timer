@@ -1,4 +1,4 @@
-package com.timer;
+package com.deployproject;
 
 import android.app.Application;
 import android.content.Context;

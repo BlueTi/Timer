@@ -17,11 +17,6 @@ export default (state = options, action) => {
                 work_minute:action.payload.work_minute,
                 rest_minute:action.payload.rest_minute,
             }
-        case types.end_rest:
-            return{
-                ... options,
-            }
-
         case types.end_work:
             return {
                 ... state,
