@@ -1,6 +1,5 @@
 import PushNotification from "react-native-push-notification";
 
-
 const setNotification = (values) => {
     PushNotification.localNotificationSchedule({
         autoCancel: true,
