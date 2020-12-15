@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import SetView from './SetView';
-import { View, Text } from 'react-native';
-import { useSelector, shallowEqual } from 'react-redux';
+import { View } from 'react-native';
+import { useSelector, } from 'react-redux';
+import TimerView from './TimerView';
+import {styles} from '../styles';
+import Notification from '../Notification';
 
 const MainView = () => {
-    const {work_flag,rest_flag} = useSelector(state=>({
-        work_flag: state.work_flag,
-        rest_flag: state.rest_flag,
-        }),
-        shallowEqual
-    );
+    const { work_flag, rest_flag,stop_flag } = useSelector(state => state.options);
 
-    useEffect(()=>{
-        console.log("create "+work_flag+" : "+rest_flag);
-    });
+    useEffect(() => {
+        if(stop_flag) Notification.cancel();
+    },[work_flag,rest_flag]);
 
-    return <View>
-        <Text>{work_flag?"true":"false"}</Text>
-        {work_flag?<View><Text>hi</Text></View>:<SetView/>}
+    return <View style={styles.main}>
+        {work_flag ? <View><TimerView /></View> : rest_flag ? <TimerView /> : <SetView />}
     </View>
 }
+
 
 
 export default MainView;

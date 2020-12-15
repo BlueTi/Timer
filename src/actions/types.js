@@ -1,8 +1,8 @@
 const types = {
-    work_flag: "work_flag",
-    rest_flag: "rest_flag",
-    work_minutes: "work_minutes",
-    rest_minutes: "rest_minutes",
+    start: "start",
+    end_work: "end_work",
+    end_rest: "end_rest",
+    stop: "stop",
 };
 
 export default types;

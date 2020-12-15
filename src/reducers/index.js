@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import FlagReducer from './flagReducer';
+import OptionReducer from './optionReducer';
 
 export default combineReducers({
-  flag: FlagReducer  
+  options : OptionReducer,
 });
